@@ -5,12 +5,15 @@ require("functions.php");
 $city_name = "";
 $country_code = "";
 
+//Checking if the submit button was pressed in the form
 if (isset($_POST["submit"])) {
+    //If the user filled all the required fields then we clean the data from any malicious code
     if (isset($_POST["city_name"]) && isset($_POST["country_code"]) && isset($_POST["tempUnits"])) {
         $city_name = clean_data($_POST["city_name"]);
         $country_code = clean_data($_POST["country_code"]);
         $temperature_unit = clean_data($_POST["tempUnits"]);
 
+        //Depending on what temperature the user chose display the correct format 
         if ($temperature_unit == "c" ) {
             $units = "metric";
             show_weather_data($city_name, $country_code, $units);
